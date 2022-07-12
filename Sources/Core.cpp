@@ -8,19 +8,12 @@
 #include "Core.hpp"
 
 namespace Abstract {
-    Core::Core()
+    Core::Core() : _fileName("")
     {
-        _isRunning = true;
-        _stream = &std::cin;
     }
 
     Core::~Core()
     {
-    }
-
-    void Core::setStream(std::istream *stream)
-    {
-        _stream = stream;
     }
 
     void Core::checkArguments(int ac, char **av)
@@ -38,14 +31,47 @@ namespace Abstract {
         std::ifstream file(fileName.c_str());
         if (!file.is_open())
             throw Abstract::Exception("file not found");
-        setStream(&file);
+        _fileName = fileName;
         return;
+    }
+
+    void Core::parseLine(std::string line)
+    {
+        
+    }
+
+    void Core::parseFile(std::istream& in)
+    {
+        std::string line;
+        std::regex commentary("^(;.*)$");
+        std::regex commands("(((push|assert|load|store)\\s*((int8|int16|int32)\\([-]?[0-9]+\\)|(float|double|bigdecimal)\\([-]?[0-9]+[.]?[0-9]*\\)))|(pop|dump|clear|dup|swap|add|sub|mul|div|mod|print)\\s*)|exit\\s*");
+
+        while (std::getline(in, line)) {
+            if (std::regex_match(line, commentary))
+                continue;
+            else if (std::regex_match(line, commands)) {
+                _instructions.push_back(line);
+                continue;
+            }
+            throw Exception("Invalid instruction or syntax");
+        }
+    }
+
+    void Core::compute()
+    {
+        for (auto &instruction : _instructions) {
+            std::cout << instruction << std::endl;
+        }
     }
 
     void Core::run()
     {
-        for (std::string line; std::getline(*_stream, line);) {
-            std::cout << line << std::endl;
+        if (_fileName == "")
+            compute();
+        else {
+            std::ifstream file(_fileName.c_str());
+            parseFile(file);
+            compute();
         }
     }
 }

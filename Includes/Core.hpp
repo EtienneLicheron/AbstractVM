@@ -12,9 +12,15 @@
     #include <vector>
     #include <unistd.h>
     #include <fstream>
+    #include <regex>
     #include "Exception.hpp"
+    // #include "Factory.hpp"
+    #include "eOperand.hpp"
+    // #include "IOperand.hpp"
 
 namespace Abstract {
+    //typedef IOperand *(*PtrFonct)();
+
     class Core {
         public:
             Core();
@@ -22,10 +28,24 @@ namespace Abstract {
             void run();
             void checkArguments(int ac, char **av);
             void setStream(std::istream *stream);
+            void compute();
+            void parseLine(std::string line);
+            void parseFile(std::istream& in);
         private:
-            bool _isRunning;
-            std::istream *_stream;
+            std::vector <std::string> _instructions;
+            //PtrFonct pf;
+            //std::map<std::string, IOperand*(*pf)(const IOperand*)> _commands;
+            std::string _fileName;
     };
+
+    typedef enum eOperandType_s {
+        Int8,
+        Int16,
+        Int32,
+        Float,
+        Double,
+        BigDecimal
+    }eOperandType;
 }
 
 #endif /* !CORE_HPP_ */
