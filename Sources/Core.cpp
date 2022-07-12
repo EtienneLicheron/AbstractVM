@@ -37,7 +37,14 @@ namespace Abstract {
 
     void Core::parseLine(std::string line)
     {
-        
+        std::string command = line.substr(0, line.find(" "));
+        std::string value;
+
+        if (line.find_last_of(" ") >= std::string::npos)
+            value = "";
+        else
+            value = line.substr(line.find_last_of(" ") + 1);
+        _commands.push_back(std::make_pair(command, value));
     }
 
     void Core::parseFile(std::istream& in)
@@ -46,11 +53,12 @@ namespace Abstract {
         std::regex commentary("^(;.*)$");
         std::regex commands("(((push|assert|load|store)\\s*((int8|int16|int32)\\([-]?[0-9]+\\)|(float|double|bigdecimal)\\([-]?[0-9]+[.]?[0-9]*\\)))|(pop|dump|clear|dup|swap|add|sub|mul|div|mod|print)\\s*)|exit\\s*");
 
+
         while (std::getline(in, line)) {
             if (std::regex_match(line, commentary))
                 continue;
             else if (std::regex_match(line, commands)) {
-                _instructions.push_back(line);
+                parseLine(line);
                 continue;
             }
             throw Exception("Invalid instruction or syntax");
@@ -59,8 +67,10 @@ namespace Abstract {
 
     void Core::compute()
     {
-        for (auto &instruction : _instructions) {
-            std::cout << instruction << std::endl;
+        if (_commands.back().first != "exit")
+            throw Exception("File must end with exit");
+        for (auto &commands : _commands) {
+            std::cout << commands.first << "-" << commands.second << std::endl;
         }
     }
 

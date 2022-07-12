@@ -14,9 +14,14 @@
     #include <fstream>
     #include <regex>
     #include "Exception.hpp"
+    #include <iostream>
+    #include <sstream>
+    #include <iterator>
+    #include <algorithm>
     // #include "Factory.hpp"
-    #include "eOperand.hpp"
+    // #include "eOperand.hpp"
     // #include "IOperand.hpp"
+
 
 namespace Abstract {
     //typedef IOperand *(*PtrFonct)();
@@ -29,10 +34,11 @@ namespace Abstract {
             void checkArguments(int ac, char **av);
             void setStream(std::istream *stream);
             void compute();
-            void parseLine(std::string line);
             void parseFile(std::istream& in);
+            void parseLine(std::string line);
         private:
             std::vector <std::string> _instructions;
+            std::vector<std::pair <std::string, std::string>> _commands;
             //PtrFonct pf;
             //std::map<std::string, IOperand*(*pf)(const IOperand*)> _commands;
             std::string _fileName;
