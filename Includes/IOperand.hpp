@@ -8,6 +8,7 @@
 #ifndef IOPERAND_HPP_
     #define IOPERAND_HPP_
     #include <string>
+    #include <map>
 
 namespace Abstract {
     typedef enum eOperandType_s {
@@ -29,7 +30,6 @@ namespace Abstract {
             virtual IOperand* operator/(const IOperand &rhs) const = 0;
             virtual IOperand* operator%(const IOperand &rhs) const = 0;
             virtual ~IOperand();
-        private:
     };
 }
 

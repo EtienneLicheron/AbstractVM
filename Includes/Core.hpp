@@ -13,19 +13,17 @@
     #include <unistd.h>
     #include <fstream>
     #include <regex>
-    #include "Exception.hpp"
     #include <iostream>
     #include <sstream>
     #include <iterator>
     #include <algorithm>
-    #include "IOperand.hpp"
+    #include "Exception.hpp"
+    #include "Factory.hpp"
 
 
 namespace Abstract {
     class Core;
     typedef void (Core::*function)(std::string);
-    //void (Core::*function)(void);
-
     class Core {
         public:
             Core();

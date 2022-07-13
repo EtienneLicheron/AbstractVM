@@ -8,4 +8,8 @@
 #include "Operand.hpp"
 
 namespace Abstract {
+    template <typename T>
+    Operand<T>::Operand(T value) : _value(value)
+    {
+    } 
 }

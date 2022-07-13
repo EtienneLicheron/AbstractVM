@@ -23,6 +23,7 @@ namespace Abstract {
             IOperand* operator%(const IOperand &rhs) const;
             ~Operand();
         private:
+            T _value;
     };
 }
 
