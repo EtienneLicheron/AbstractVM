@@ -18,13 +18,13 @@
     #include <sstream>
     #include <iterator>
     #include <algorithm>
-    // #include "Factory.hpp"
-    // #include "eOperand.hpp"
-    // #include "IOperand.hpp"
+    #include "IOperand.hpp"
 
 
 namespace Abstract {
-    //typedef IOperand *(*PtrFonct)();
+    class Core;
+    typedef void (Core::*function)(std::string);
+    //void (Core::*function)(void);
 
     class Core {
         public:
@@ -36,22 +36,32 @@ namespace Abstract {
             void compute();
             void parseFile(std::istream& in);
             void parseLine(std::string line);
-        private:
-            std::vector <std::string> _instructions;
-            std::vector<std::pair <std::string, std::string>> _commands;
-            //PtrFonct pf;
-            //std::map<std::string, IOperand*(*pf)(const IOperand*)> _commands;
-            std::string _fileName;
-    };
 
-    typedef enum eOperandType_s {
-        Int8,
-        Int16,
-        Int32,
-        Float,
-        Double,
-        BigDecimal
-    }eOperandType;
+            void assert(std::string value);
+            void load(std::string value);
+            void push(std::string value);
+
+            void add(std::string value);
+            void clear(std::string value);
+            void div(std::string value);
+            void dump(std::string value);
+            void dup(std::string value);
+            void exit(std::string value);
+            void mod(std::string value);
+            void mul(std::string value);
+            void pop(std::string value);
+            void print(std::string value);
+            void store(std::string value);
+            void sub(std::string value);
+            void swap(std::string value);
+        private:
+            bool _isRunning;
+            std::string _fileName;
+            std::vector<std::pair <std::string, std::string>> _commands;
+            std::map <std::string, function> _mapFunctions;
+            std::vector<IOperand *> _stack;
+    };
 }
+
 
 #endif /* !CORE_HPP_ */

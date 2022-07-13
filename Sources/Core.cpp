@@ -7,9 +7,32 @@
 
 #include "Core.hpp"
 
+void printlol(void)
+{
+    std::cout << "lol" << std::endl;
+}
+
 namespace Abstract {
-    Core::Core() : _fileName("")
+    Core::Core()
     {
+        _isRunning = true;
+        _fileName = "";
+        _mapFunctions["add"] = &Core::add;
+        _mapFunctions["assert"] = &Core::assert;
+        _mapFunctions["clear"] = &Core::clear;
+        _mapFunctions["div"] = &Core::div;
+        _mapFunctions["dump"] = &Core::dump;
+        _mapFunctions["dup"] = &Core::dup;
+        _mapFunctions["exit"] = &Core::exit;
+        _mapFunctions["load"] = &Core::load;
+        _mapFunctions["mod"] = &Core::mod;
+        _mapFunctions["mul"] = &Core::mul;
+        _mapFunctions["pop"] = &Core::pop;
+        _mapFunctions["print"] = &Core::print;
+        _mapFunctions["push"] = &Core::push;
+        _mapFunctions["store"] = &Core::store;
+        _mapFunctions["sub"] = &Core::sub;
+        _mapFunctions["swap"] = &Core::swap;
     }
 
     Core::~Core()
@@ -70,6 +93,10 @@ namespace Abstract {
         if (_commands.back().first != "exit")
             throw Exception("File must end with exit");
         for (auto &commands : _commands) {
+            for (auto const& x : _mapFunctions) {
+                if (commands.first == x.first)
+                    (this->*x.second)(commands.second);
+            }
             std::cout << commands.first << "-" << commands.second << std::endl;
         }
     }

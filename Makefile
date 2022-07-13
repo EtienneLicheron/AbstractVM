@@ -8,6 +8,7 @@
 BIN 		= abstractVM
 
 SRC 		= $(wildcard Sources/*.cpp)
+SRC			+= $(wildcard Sources/Instructions/*.cpp)
 OBJS 		= $(SRC:.cpp=.o)
 
 CPPFLAGS 	= -W -Wall -Wextra -I ./Includes -fno-gnu-unique -g3
