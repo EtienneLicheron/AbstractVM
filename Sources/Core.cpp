@@ -7,11 +7,6 @@
 
 #include "Core.hpp"
 
-void printlol(void)
-{
-    std::cout << "lol" << std::endl;
-}
-
 namespace Abstract {
     Core::Core()
     {
@@ -37,6 +32,8 @@ namespace Abstract {
 
     Core::~Core()
     {
+        for (auto &it : _stack)
+            delete it;
     }
 
     void Core::checkArguments(int ac, char **av)
@@ -76,7 +73,6 @@ namespace Abstract {
         std::regex commentary("^(;.*)$");
         std::regex commands("(((push|assert|load|store)\\s*((int8|int16|int32)\\([-]?[0-9]+\\)|(float|double|bigdecimal)\\([-]?[0-9]+[.]?[0-9]*\\)))|(pop|dump|clear|dup|swap|add|sub|mul|div|mod|print)\\s*)|exit\\s*");
 
-
         while (std::getline(in, line)) {
             if (std::regex_match(line, commentary))
                 continue;
@@ -97,7 +93,6 @@ namespace Abstract {
                 if (commands.first == x.first)
                     (this->*x.second)(commands.second);
             }
-            std::cout << commands.first << "-" << commands.second << std::endl;
         }
     }
 

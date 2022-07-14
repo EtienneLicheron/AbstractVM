@@ -52,11 +52,11 @@ namespace Abstract {
             void store(std::string value);
             void sub(std::string value);
             void swap(std::string value);
+            std::map <std::string, function> _mapFunctions;
         private:
             bool _isRunning;
             std::string _fileName;
             std::vector<std::pair <std::string, std::string>> _commands;
-            std::map <std::string, function> _mapFunctions;
             std::vector<IOperand *> _stack;
     };
 }

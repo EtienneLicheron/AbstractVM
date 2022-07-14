@@ -13,15 +13,14 @@ namespace Abstract {
     template <typename T>
     class Operand : public IOperand {
         public:
-            Operand(T value);
-            std::string toString() const;
-            eOperandType getType() const;
-            IOperand* operator+(const IOperand &rhs) const;
-            IOperand* operator-(const IOperand &rhs) const;
-            IOperand* operator*(const IOperand &rhs) const;
-            IOperand* operator/(const IOperand &rhs) const;
-            IOperand* operator%(const IOperand &rhs) const;
-            ~Operand();
+            Operand(const T &value) : _value(value){}
+            std::string toString() const {return std::to_string(_value);};
+            eOperandType getType() const {return Int8;};
+            IOperand* operator+(const IOperand &rhs) const { return NULL; };
+            IOperand* operator-(const IOperand &rhs) const { return NULL; };
+            IOperand* operator*(const IOperand &rhs) const { return NULL; };
+            IOperand* operator/(const IOperand &rhs) const { return NULL; };
+            IOperand* operator%(const IOperand &rhs) const { return NULL; };
         private:
             T _value;
     };

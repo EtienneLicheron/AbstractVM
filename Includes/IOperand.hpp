@@ -9,6 +9,8 @@
     #define IOPERAND_HPP_
     #include <string>
     #include <map>
+    #include <limits>
+    #include "Exception.hpp"
 
 namespace Abstract {
     typedef enum eOperandType_s {
@@ -29,7 +31,7 @@ namespace Abstract {
             virtual IOperand* operator*(const IOperand &rhs) const = 0;
             virtual IOperand* operator/(const IOperand &rhs) const = 0;
             virtual IOperand* operator%(const IOperand &rhs) const = 0;
-            virtual ~IOperand();
+            virtual ~IOperand() {};
     };
 }
 

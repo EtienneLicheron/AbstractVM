@@ -8,22 +8,23 @@
 #ifndef FACTORY_HPP_
     #define FACTORY_HPP_
     #include "Operand.hpp"
+    #include <functional>
 
 namespace Abstract {
-    class Factory;
-    //typedef IOperand* (Factory::*fn)(std::string const &value);
     class Factory {
         public:
             Factory();
-            static IOperand* createOperand(eOperandType type, std::string &value);
+            static IOperand* createOperand(eOperandType type, const std::string &value);
+            typedef IOperand* (&function)(std::string &);
         private:
-            IOperand* createInt8(const std::string& value);
-            IOperand* createInt16(const std::string& value);
-            IOperand* createInt32(const std::string& value);
-            IOperand* createFloat(const std::string& value);
-            IOperand* createDouble(const std::string& value);
-            IOperand* createBigDecimal(const std::string& value);
+            static IOperand *createInt8(const std::string &value);
+            static IOperand *createInt16(const std::string &value);
+            static IOperand *createInt32(const std::string &value);
+            static IOperand *createFloat(const std::string &value);
+            static IOperand *createDouble(const std::string &value);
+            static IOperand *createBigDecimal(const std::string &value);
     };
+
 }
 
 #endif /* !FACTORY_HPP_ */

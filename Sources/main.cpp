@@ -16,6 +16,7 @@ int main(int ac, char **av)
         core.run();
     }
     catch (std::exception &e) {
+        core.~Core();
         std::cerr << "Fatal error: " << e.what() << std::endl;
     }
     return 0;
