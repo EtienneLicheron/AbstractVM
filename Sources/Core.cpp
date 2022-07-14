@@ -32,8 +32,10 @@ namespace Abstract {
 
     Core::~Core()
     {
-        for (auto &it : _stack)
-            delete it;
+        if (!_stack.empty()) {
+            for (auto &it : _stack)
+                delete it;
+        }
     }
 
     void Core::checkArguments(int ac, char **av)

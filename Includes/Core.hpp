@@ -53,6 +53,15 @@ namespace Abstract {
             void sub(std::string value);
             void swap(std::string value);
             std::map <std::string, function> _mapFunctions;
+
+            std::map<std::string, eOperandType> _typeMap = {
+                {"int8", eOperandType::Int8},
+                {"int16", eOperandType::Int16},
+                {"int32", eOperandType::Int32},
+                {"float", eOperandType::Float},
+                {"double", eOperandType::Double},
+                {"bigdecimal", eOperandType::BigDecimal}
+            };
         private:
             bool _isRunning;
             std::string _fileName;
