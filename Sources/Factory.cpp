@@ -9,9 +9,6 @@
 
 namespace Abstract
 {
-    Factory::Factory()
-    {
-    }
     IOperand* Factory::createOperand(eOperandType type, const std::string &value)
     {
         const std::function<IOperand*(const std::string value)> functions[6] = {
@@ -27,43 +24,43 @@ namespace Abstract
 
     IOperand* Factory::createInt8(const std::string &value)
     {
-        if (std::stold(value) > std::numeric_limits<int8_t>::max() || std::stold(value) < std::numeric_limits<int8_t>::min())
+        if (std::stoi(value) > std::numeric_limits<int8_t>::max() || std::stoi(value) < std::numeric_limits<int8_t>::min())
             throw Exception("Type value overflow");
-        return new Operand<int8_t>(std::stoi(value));
+        return new Operand<int8_t>(std::stoi(value), Int8);
     }
 
     IOperand* Factory::createInt16(const std::string &value)
     {
         if (std::stold(value) > std::numeric_limits<int16_t>::max() || std::stold(value) < std::numeric_limits<int16_t>::min())
             throw Exception("Type value overflow");
-        return new Operand<int16_t>(std::stoi(value));
+        return new Operand<int16_t>(std::stoi(value), Int16);
     }
 
     IOperand* Factory::createInt32(const std::string &value)
     {
         if (std::stold(value) > std::numeric_limits<int32_t>::max() || std::stold(value) < std::numeric_limits<int32_t>::min())
             throw Exception("Type value overflow");
-        return new Operand<int32_t>(std::stoi(value));
+        return new Operand<int32_t>(std::stoi(value), Int32);
     }
 
     IOperand* Factory::createFloat(const std::string &value)
     {
         if (std::stof(value) > std::numeric_limits<float>::max() || std::stof(value) < std::numeric_limits<float>::min())
             throw Exception("Type value overflow");
-        return new Operand<float>(std::stof(value));
+        return new Operand<float>(std::stof(value), Float);
     }
 
     IOperand* Factory::createDouble(const std::string &value)
     {
         if (std::stod(value) > std::numeric_limits<double>::max() || std::stod(value) < std::numeric_limits<double>::min())
             throw Exception("Type value overflow");
-        return new Operand<double>(std::stod(value));
+        return new Operand<double>(std::stod(value), Double);
     }
 
     IOperand* Factory::createBigDecimal(const std::string &value)
     {
         if (std::stod(value) > std::numeric_limits<long double>::max() || std::stod(value) < std::numeric_limits<long double>::min())
             throw Exception("Type value overflow");
-        return new Operand<long double>(std::stold(value));
+        return new Operand<long double>(std::stold(value), BigDecimal);
     }
 }

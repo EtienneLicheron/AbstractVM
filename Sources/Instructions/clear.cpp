@@ -9,6 +9,8 @@
 
 namespace Abstract {
     void Core::clear(std::string value) {
-        
+        if (_stack.empty())
+            throw Exception("Empty stack");
+        _stack.clear();
     }
 }

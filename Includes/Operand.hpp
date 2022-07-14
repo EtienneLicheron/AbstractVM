@@ -13,9 +13,9 @@ namespace Abstract {
     template <typename T>
     class Operand : public IOperand {
         public:
-            Operand(const T &value) : _value(value){}
+            Operand(const T &value, eOperandType type) : _value(value), _type(type){}
             std::string toString() const {return std::to_string(_value);};
-            eOperandType getType() const {return Int8;};
+            eOperandType getType() const {return _type;};
             IOperand* operator+(const IOperand &rhs) const { return NULL; };
             IOperand* operator-(const IOperand &rhs) const { return NULL; };
             IOperand* operator*(const IOperand &rhs) const { return NULL; };
@@ -23,6 +23,7 @@ namespace Abstract {
             IOperand* operator%(const IOperand &rhs) const { return NULL; };
         private:
             T _value;
+            eOperandType _type;
     };
 }
 

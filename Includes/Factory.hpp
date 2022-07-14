@@ -13,7 +13,6 @@
 namespace Abstract {
     class Factory {
         public:
-            Factory();
             static IOperand* createOperand(eOperandType type, const std::string &value);
             typedef IOperand* (&function)(std::string &);
         private:
