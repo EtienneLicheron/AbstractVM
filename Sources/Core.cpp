@@ -73,10 +73,9 @@ namespace Abstract {
     {
         std::string line;
         std::regex commentary("^(;.*)$");
-        std::regex commands("(((push|assert|load|store)\\s*((int8|int16|int32)\\([-]?[0-9]+\\)|(float|double|bigdecimal)\\([-]?[0-9]+[.]?[0-9]*\\)))|(pop|dump|clear|dup|swap|add|sub|mul|div|mod|print)($|\\s*$|\\s*;.*))|exit\\s*");
+        std::regex commands("(((push|assert|load|store)\\s*((int8|int16|int32)\\([-]?[0-9]+\\)(\\s*$|;.*.|;)|(float|double|bigdecimal)\\([-]?[0-9]+[.]?[0-9]*\\)(\\s*$|;.*.|;)))|(pop|dump|clear|dup|swap|add|sub|mul|div|mod|print)($|\\s*$|\\s*;.*))|exit\\s*");
 
         while (std::getline(in, line)) {
-            std::cout << line << std::endl;
             if (std::regex_match(line, commentary) || line.empty())
                 continue;
             else if (std::regex_match(line, commands)) {
