@@ -33,6 +33,7 @@ namespace Abstract {
             void checkArguments(int ac, char **av);
             void setStream(std::istream *stream);
             void compute();
+            void computeEntry(std::istream& in);
             void parseFile(std::istream& in);
             void parseLine(std::string line);
 
