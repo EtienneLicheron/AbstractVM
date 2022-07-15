@@ -16,7 +16,7 @@ namespace Abstract {
         _stack.pop_back();
         IOperand *second = _stack.back();
         _stack.pop_back();
-        if (second->toString() == "0")
+        if (first->toString() == "0")
             throw Exception("Division by zero");
         _stack.push_back(first->operator/(*second));
         delete(first);
