@@ -32,7 +32,10 @@ namespace Abstract {
             }
             IOperand* operator/(const IOperand &rhs) const
             {
-                return Factory::createOperand(this->getType(), std::to_string(std::stold(rhs.toString()) / std::stold(this->toString())));
+                if (_type > rhs.getType())
+                    return Factory::createOperand(_type, std::to_string(std::stold(rhs.toString()) / std::stold(this->toString())));
+                else
+                    return Factory::createOperand(rhs.getType(), std::to_string(std::stold(rhs.toString()) / std::stold(this->toString())));
             }
             IOperand* operator%(const IOperand &rhs) const
             {

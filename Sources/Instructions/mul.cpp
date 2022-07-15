@@ -10,5 +10,17 @@
 namespace Abstract {
     void Core::mul(std::string value) {
         (void)value;
+        if (_stack.size() < 2)
+            throw Exception("Not enough elements (at least two)");
+        IOperand *first = _stack.back();
+        _stack.pop_back();
+        IOperand *second = _stack.back();
+        _stack.pop_back();
+        if (first->getType() > second->getType())
+            _stack.push_back(first->operator*(*second));
+        else
+            _stack.push_back(second->operator*(*first));
+        delete(first);
+        delete(second);
     }
 }
