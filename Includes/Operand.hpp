@@ -17,11 +17,28 @@ namespace Abstract {
             Operand(const T &value, eOperandType type) : _value(value), _type(type){}
             std::string toString() const {return std::to_string(_value);};
             eOperandType getType() const {return _type;};
-            IOperand* operator+(const IOperand &rhs) const {(void)rhs; return NULL;};
-            IOperand* operator-(const IOperand &rhs) const {(void)rhs; return NULL;};
-            IOperand* operator*(const IOperand &rhs) const {(void)rhs; return NULL;};
-            IOperand* operator/(const IOperand &rhs) const {(void)rhs; return NULL;};
-            IOperand* operator%(const IOperand &rhs) const {(void)rhs; return NULL;};
+
+            IOperand* operator+(const IOperand &rhs) const
+            {
+                return Factory::createOperand(this->getType(), std::to_string(std::stold(rhs.toString()) + std::stold(this->toString())));
+            }
+            IOperand* operator-(const IOperand &rhs) const
+            {
+                return Factory::createOperand(this->getType(), std::to_string(std::stold(this->toString()) - std::stold(rhs.toString())));
+            }
+            IOperand* operator*(const IOperand &rhs) const
+            {
+                return Factory::createOperand(this->getType(), std::to_string(std::stold(rhs.toString()) * std::stold(this->toString())));
+            }
+            IOperand* operator/(const IOperand &rhs) const
+            {
+                return Factory::createOperand(this->getType(), std::to_string(std::stold(rhs.toString()) / std::stold(this->toString())));
+            }
+            IOperand* operator%(const IOperand &rhs) const
+            {
+                (void)rhs;
+                return NULL;
+            }
         private:
             T _value;
             eOperandType _type;

@@ -6,6 +6,7 @@
 */
 
 #include "Factory.hpp"
+#include "Operand.hpp"
 
 namespace Abstract
 {

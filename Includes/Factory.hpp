@@ -7,7 +7,7 @@
 
 #ifndef FACTORY_HPP_
     #define FACTORY_HPP_
-    #include "Operand.hpp"
+    #include "IOperand.hpp"
     #include <functional>
 
 namespace Abstract {

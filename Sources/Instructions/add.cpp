@@ -16,7 +16,11 @@ namespace Abstract {
         _stack.pop_back();
         IOperand *second = _stack.back();
         _stack.pop_back();
-        // if (first->getType() > second->getType())
-            // _stack.push_back(Factory::createOperand(first->getType(), first->operator+(&second)->toString()));
+        if (first->getType() > second->getType())
+            _stack.push_back(first->operator+(*second));
+        else
+            _stack.push_back(second->operator+(*first));
+        delete(first);
+        delete(second);
     }
 }
