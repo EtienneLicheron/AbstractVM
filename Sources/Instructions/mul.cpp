@@ -9,6 +9,6 @@
 
 namespace Abstract {
     void Core::mul(std::string value) {
-        
+        (void)value;
     }
 }

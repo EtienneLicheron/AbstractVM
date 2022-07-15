@@ -9,6 +9,6 @@
 
 namespace Abstract {
     void Core::print(std::string value) {
-        
+        (void)value;
     }
 }

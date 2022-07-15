@@ -9,6 +9,6 @@
 
 namespace Abstract {
     void Core::div(std::string value) {
-        
+        (void)value;
     }
 }

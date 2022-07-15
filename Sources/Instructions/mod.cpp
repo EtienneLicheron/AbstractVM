@@ -9,6 +9,6 @@
 
 namespace Abstract {
     void Core::mod(std::string value) {
-        
+        (void)value;
     }
 }

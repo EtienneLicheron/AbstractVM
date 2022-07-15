@@ -9,6 +9,7 @@
 
 namespace Abstract {
     void Core::dup(std::string value) {
+        (void)value;
         if (_stack.empty())
             throw Exception("Empty stack");
         _stack.push_back(Factory::createOperand(_stack.back()->getType(), _stack.back()->toString()));

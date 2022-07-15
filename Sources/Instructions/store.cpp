@@ -9,6 +9,6 @@
 
 namespace Abstract {
     void Core::store(std::string value) {
-        
+        (void)value;
     }
 }

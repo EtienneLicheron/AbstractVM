@@ -47,20 +47,20 @@ namespace Abstract
     {
         if (std::stof(value) > std::numeric_limits<float>::max() || std::stof(value) < std::numeric_limits<float>::min())
             throw Exception("Type value overflow");
-        return new Operand<float>(std::stoi(value), Float);
+        return new Operand<float>(std::stof(value), Float);
     }
 
     IOperand* Factory::createDouble(const std::string &value)
     {
         if (std::stod(value) > std::numeric_limits<double>::max() || std::stod(value) < std::numeric_limits<double>::min())
             throw Exception("Type value overflow");
-        return new Operand<double>(std::stod(value), Double);
+        return new Operand<double>(std::stof(value), Double);
     }
 
     IOperand* Factory::createBigDecimal(const std::string &value)
     {
         if (std::stod(value) > std::numeric_limits<long double>::max() || std::stod(value) < std::numeric_limits<long double>::min())
             throw Exception("Type value overflow");
-        return new Operand<long double>(std::stold(value), BigDecimal);
+        return new Operand<long double>(std::stof(value), BigDecimal);
     }
 }

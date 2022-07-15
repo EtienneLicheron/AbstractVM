@@ -8,6 +8,7 @@
 #ifndef OPERAND_HPP_
     #define OPERAND_HPP_
     #include "IOperand.hpp"
+    #include "Factory.hpp"
 
 namespace Abstract {
     template <typename T>
@@ -16,11 +17,11 @@ namespace Abstract {
             Operand(const T &value, eOperandType type) : _value(value), _type(type){}
             std::string toString() const {return std::to_string(_value);};
             eOperandType getType() const {return _type;};
-            IOperand* operator+(const IOperand &rhs) const { return NULL; };
-            IOperand* operator-(const IOperand &rhs) const { return NULL; };
-            IOperand* operator*(const IOperand &rhs) const { return NULL; };
-            IOperand* operator/(const IOperand &rhs) const { return NULL; };
-            IOperand* operator%(const IOperand &rhs) const { return NULL; };
+            IOperand* operator+(const IOperand &rhs) const {(void)rhs; return NULL;};
+            IOperand* operator-(const IOperand &rhs) const {(void)rhs; return NULL;};
+            IOperand* operator*(const IOperand &rhs) const {(void)rhs; return NULL;};
+            IOperand* operator/(const IOperand &rhs) const {(void)rhs; return NULL;};
+            IOperand* operator%(const IOperand &rhs) const {(void)rhs; return NULL;};
         private:
             T _value;
             eOperandType _type;

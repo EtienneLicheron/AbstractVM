@@ -9,6 +9,7 @@
 
 namespace Abstract {
     void Core::swap(std::string value) {
+        (void)value;
         if (_stack.size() < 2)
             throw Exception("Not enough elements in stack");
         IOperand *first = _stack.back();

@@ -9,6 +9,10 @@
 
 namespace Abstract {
     void Core::assert(std::string value) {
-        
+        std::string newValue = value.substr(value.find_first_of('(') + 1);
+        newValue.pop_back();
+        eOperandType type = _typeMap[value.substr(0, value.find_first_of('('))];
+        if (_stack.back()->getType() != type || _stack.back()->toString() != newValue)
+            throw Exception("Assertion failed");
     }
 }

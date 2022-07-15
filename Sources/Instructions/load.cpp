@@ -9,6 +9,6 @@
 
 namespace Abstract {
     void Core::load(std::string value) {
-        
+        (void)value;
     }
 }

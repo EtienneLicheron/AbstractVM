@@ -9,10 +9,11 @@
 
 namespace Abstract {
     void Core::dump(std::string value) {
+        (void)value;
         if (_stack.empty())
             throw Exception("Empty stack");
         for (auto it = _stack.rbegin(); it != _stack.rend(); it++) {
-            std::cout << (*it)->toString() << std::endl;
+            std::cout << std::setprecision((*it)->toString().length()) << std::stof((*it)->toString()) << std::endl;
         }
     }
 }

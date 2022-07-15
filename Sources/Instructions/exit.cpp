@@ -9,6 +9,7 @@
 
 namespace Abstract {
     void Core::exit(std::string value) {
+        (void)value;
         _isRunning = false;
     }
 }
