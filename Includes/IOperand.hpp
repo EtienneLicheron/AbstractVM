@@ -10,6 +10,7 @@
     #include <string>
     #include <map>
     #include <limits>
+    #include <iomanip>
     #include "Exception.hpp"
 
 namespace Abstract {

@@ -11,7 +11,8 @@ namespace Abstract {
     void Core::dump(std::string value) {
         if (_stack.empty())
             throw Exception("Empty stack");
-        for (auto it = _stack.rbegin(); it != _stack.rend(); it++)
+        for (auto it = _stack.rbegin(); it != _stack.rend(); it++) {
             std::cout << (*it)->toString() << std::endl;
+        }
     }
 }

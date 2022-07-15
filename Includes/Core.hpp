@@ -16,6 +16,7 @@
     #include <iostream>
     #include <sstream>
     #include <iterator>
+    #include <list>
     #include <algorithm>
     #include "Exception.hpp"
     #include "Factory.hpp"
@@ -66,9 +67,8 @@ namespace Abstract {
             bool _isRunning;
             std::string _fileName;
             std::vector<std::pair <std::string, std::string>> _commands;
-            std::vector<IOperand *> _stack;
+            std::list<IOperand *> _stack;
     };
 }
-
 
 #endif /* !CORE_HPP_ */
