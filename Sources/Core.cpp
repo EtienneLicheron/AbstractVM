@@ -118,10 +118,7 @@ namespace Abstract {
                 parseLine(line);
                 continue;
             }
-            // else if (line == "exit")
-            //     continue;
-            // else
-                throw Exception("Invalid instruction or syntax");
+            throw Exception("Invalid instruction or syntax");
         }
         compute();
     }
