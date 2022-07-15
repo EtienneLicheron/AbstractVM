@@ -17,6 +17,7 @@ int main(int ac, char **av)
     }
     catch (std::exception &e) {
         std::cerr << "Fatal error: " << e.what() << std::endl;
+        return 84;
     }
     return 0;
 }
