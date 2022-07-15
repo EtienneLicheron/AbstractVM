@@ -9,6 +9,7 @@
     #define OPERAND_HPP_
     #include "IOperand.hpp"
     #include "Factory.hpp"
+    #include <cmath>
 
 namespace Abstract {
     template <typename T>
@@ -39,8 +40,10 @@ namespace Abstract {
             }
             IOperand* operator%(const IOperand &rhs) const
             {
-                (void)rhs;
-                return NULL;
+                if (_type > rhs.getType())
+                    return Factory::createOperand(_type, std::to_string(std::fmod(std::stold(this->toString()), std::stold(rhs.toString()))));
+                else
+                    return Factory::createOperand(rhs.getType(), std::to_string(std::fmod(std::stold(this->toString()), std::stold(rhs.toString()))));
             }
         private:
             T _value;

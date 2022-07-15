@@ -11,6 +11,7 @@ namespace Abstract {
     Core::Core()
     {
         std::list<IOperand *> _stack = {};
+        std::list<IOperand *> _registers = {};
         _isRunning = true;
         _fileName = "";
         _mapFunctions["add"] = &Core::add;
@@ -33,8 +34,13 @@ namespace Abstract {
 
     Core::~Core()
     {
-        for (auto it = _stack.rbegin(); it != _stack.rend(); it++) {
-            delete *it;
+        if (!_stack.empty()) {
+            for (auto it = _stack.begin(); it != _stack.end(); it++)
+                delete *it;
+        }
+        if (!_registers.empty()) {
+            for (auto it = _registers.begin(); it != _registers.end(); it++)
+                delete *it;
         }
     }
 
