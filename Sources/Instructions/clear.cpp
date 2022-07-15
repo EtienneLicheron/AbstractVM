@@ -12,6 +12,8 @@ namespace Abstract {
         (void)value;
         if (_stack.empty())
             throw Exception("Empty stack");
+        for (auto it = _stack.begin(); it != _stack.end(); it++)
+            delete *it;
         _stack.clear();
     }
 }

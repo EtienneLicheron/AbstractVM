@@ -11,12 +11,11 @@ namespace Abstract {
     void Core::load(std::string value) {
         std::string index = value.substr(value.find_first_of('(') + 1);
         index.pop_back();
-        if (std::stoi(index) > 16)
+        if (std::stoi(index) > 15 || std::stoi(index) < 0)
             throw Exception("Register index out of range");
-        std::list<IOperand *>::iterator it = _registers.begin();
-        std::advance(it, std::stoi(index) - 1);
-        if (*it == nullptr)
+        IOperand *it = _registers[std::stoi(index)];
+        if (it == nullptr)
             throw Exception("Register is empty");
-        _stack.push_back(Factory::createOperand((*it)->getType(), (*it)->toString()));
+        _stack.push_back(Factory::createOperand(it->getType(), it->toString()));
     }
 }

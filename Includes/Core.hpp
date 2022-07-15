@@ -69,7 +69,7 @@ namespace Abstract {
             std::string _fileName;
             std::vector<std::pair <std::string, std::string>> _commands;
             std::list<IOperand *> _stack;
-            std::list<IOperand *> _registers;
+            std::map<int, IOperand *> _registers;
     };
 }
 

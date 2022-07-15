@@ -13,7 +13,10 @@ namespace Abstract {
             throw Exception("Too many registers");
         std::string index = value.substr(value.find_first_of('(') + 1);
         index.pop_back();
-        _registers.assign(std::stoi(index), _stack.back());
+        if (std::stoi(index) > 15 || std::stoi(index) < 0)
+            throw Exception("Register index out of range");
+        IOperand *it = Factory::createOperand(_stack.back()->getType(), _stack.back()->toString());
+        _registers[std::stoi(index)] = it;
         _stack.pop_back();
     }
 }
