@@ -13,17 +13,15 @@ namespace Abstract {
         if (_stack.empty())
             throw Exception("Empty stack");
         for (auto it = _stack.rbegin(); it != _stack.rend(); it++) {
-            if ((*it)->getType() == Float) {
-                std::fesetround(FE_UPWARD);
-                std::cout << std::fixed << std::setprecision(7) << std::stof((*it)->toString()) << std::endl;
-                continue;
-            }
-            else if ((*it)->getType() == Double) {
-                std::cout << std::setprecision(15) << std::stod((*it)->toString()) << std::endl;
-                continue;
-            }
-            std::cout << std::setprecision((*it)->toString().length()) << std::stof((*it)->toString()) << std::endl;
-
+            fesetround(FE_UPWARD);
+            if ((*it)->getType() == Float)
+                std::cout << std::fixed << std::setprecision(7) << (*it)->toString() << std::endl;
+            else if ((*it)->getType() == Double)
+                std::cout << std::fixed << std::setprecision(15) << (*it)->toString() << std::endl;
+            else if ((*it)->getType() == BigDecimal)
+                std::cout << std::fixed << std::setprecision(200) << (*it)->toString() << std::endl;
+            else
+                std::cout << (*it)->toString() << std::endl;
         }
     }
 }

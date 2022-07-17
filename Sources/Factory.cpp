@@ -7,6 +7,7 @@
 
 #include "Factory.hpp"
 #include "Operand.hpp"
+#include <iostream>
 
 namespace Abstract
 {

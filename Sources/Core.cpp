@@ -47,7 +47,6 @@ namespace Abstract {
             _stack.remove(_stack.back());
             delete it;
         }
-        // delete all elements in _registers
     }
 
     void Core::checkArguments(int ac, char **av)

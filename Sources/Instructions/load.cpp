@@ -14,6 +14,8 @@ namespace Abstract {
         if (std::stoi(index) > 15 || std::stoi(index) < 0)
             throw Exception("Register index out of range");
         auto it = std::next(_registers.begin(), std::stoi(index));
+        if (*it == nullptr)
+            throw Exception("Register is null");
         IOperand *tmp = Factory::createOperand((*it)->getType(), (*it)->toString());
         _stack.push_back(tmp);
     }
