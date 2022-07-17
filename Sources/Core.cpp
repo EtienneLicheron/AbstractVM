@@ -10,25 +10,6 @@
 namespace Abstract {
     Core::Core()
     {
-        std::list<IOperand *> _stack = {};
-        std::map<int, IOperand *> _registers = {
-            {0, nullptr},
-            {1, nullptr},
-            {2, nullptr},
-            {3, nullptr},
-            {4, nullptr},
-            {5, nullptr},
-            {6, nullptr},
-            {7, nullptr},
-            {8, nullptr},
-            {9, nullptr},
-            {10, nullptr},
-            {11, nullptr},
-            {12, nullptr},
-            {13, nullptr},
-            {14, nullptr},
-            {15, nullptr},
-        };
         _isRunning = true;
         _fileName = "";
         _mapFunctions["add"] = &Core::add;
@@ -52,14 +33,19 @@ namespace Abstract {
 
     Core::~Core()
     {
-        if (!_stack.empty()) {
-            for (auto it = _stack.begin(); it != _stack.end(); it++)
-                delete *it;
-            _stack.clear();
+        for (auto it = _registers.begin(); it != _registers.end(); it++) {
+            if (*it != nullptr) {
+                IOperand *tmp = *it;
+                (*it) = nullptr;
+                delete tmp;
+            }
         }
-        if (!_registers.empty()) {
-            _registers.clear();
+        while (!_stack.empty()) {
+            IOperand *it = _stack.back();
+            _stack.remove(_stack.back());
+            delete it;
         }
+        // delete all elements in _registers
     }
 
     void Core::checkArguments(int ac, char **av)

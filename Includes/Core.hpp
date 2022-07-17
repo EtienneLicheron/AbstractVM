@@ -16,6 +16,8 @@
     #include <iostream>
     #include <sstream>
     #include <iterator>
+    #include <cmath>
+    #include <cfenv>
     #include <list>
     #include <algorithm>
     #include "Exception.hpp"
@@ -69,7 +71,8 @@ namespace Abstract {
             std::string _fileName;
             std::vector<std::pair <std::string, std::string>> _commands;
             std::list<IOperand *> _stack;
-            std::map<int, IOperand *> _registers;
+            std::list<IOperand *> _registers;
+            //std::map<int, IOperand *> _registers;
     };
 }
 
