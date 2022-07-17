@@ -29,6 +29,8 @@ namespace Abstract {
         _mapFunctions["sub"] = &Core::sub;
         _mapFunctions["swap"] = &Core::swap;
         _mapFunctions[";;"] = &Core::exit;
+        for (int i = 0; i < 16; i++)
+            _registers.push_back(nullptr);
     }
 
     Core::~Core()

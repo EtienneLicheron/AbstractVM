@@ -9,9 +9,6 @@
 
 namespace Abstract {
     void Core::store(std::string value) {
-        if (_registers.size() == 16)
-            throw Exception("Too many registers");
-
         std::string index = value.substr(value.find_first_of('(') + 1);
         index.pop_back();
 
@@ -21,7 +18,9 @@ namespace Abstract {
         auto it = std::next(_registers.begin(), std::stoi(index));
 
         if (*it != nullptr) {
-            delete *it;
+            IOperand *tmp = *it;
+            (*it) = nullptr;
+            delete tmp;
         }
 
         if (_stack.empty())
