@@ -7,7 +7,7 @@ A simple virtual machine that is able to interpret programs that are written in 
 Using Makefile : type command `make`
 
 ### Usage
-With file : `./abstractVM file.avm` [ exemples of .avm can be found in /exemples/ ]
+With file : `./abstractVM file.avm` [ exemples of .avm can be found in /Exemples/ ]
 
 Standar Input : `./abstractVM` [ To end the program execution type ;; ]
 
