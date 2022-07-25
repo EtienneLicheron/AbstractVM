@@ -11,6 +11,20 @@ With file : `./abstractVM file.avm` [ exemples of .avm can be found in /Exemples
 
 Standar Input : `./abstractVM` [ To end the program execution type ;; ]
 
+### Values Type
+
+- `Int8`
+
+- `Int16`
+
+- `Int32`
+
+- `Float`
+
+- `Double`
+
+- `BigDecimal`
+
 ## **Instructions**
 - `push v` Stack the v value at the top. The v value will naturally take one of the following forms: int8(n), int16(n), int32(n), float(z), double(z) or bigdecimal(z). (For example : int16(n) - create an signed 16-bit integer with the value n)
 
