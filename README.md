@@ -1,4 +1,4 @@
-# AbstractVM
+# AbstractVM 💻
 A simple virtual machine that is able to interpret programs that are written in a simplified assembler language. To be precise, it consists in a stack machine that is able to calculate simple arithmetical expressions. These very arithmetical expressions are given to the machine in the form of simple assembler programs.
 
 ## **How to use**
